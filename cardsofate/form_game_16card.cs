@@ -1,131 +1,217 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace cardsofate
 {
     public partial class form_mainGame : Form
     {
-        Random rng = new Random();
-        // intialising the random library 
-        List<string> icons = new List<string>() // creating a list of possible images for cards to have 
-        {
-            "koh", "kod", "koc", "kos",
-            "qoh", "qod", "qoc", "qos",
-            "joh", "jod", "joc", "jos"
-        };
 
-        /* declares variables for first clicked & second clicked cards; 
-         * useful for later when user is matching up cards */
-        // Label firstClicked, secondClicked;
+        // initialise the random library: 
+        Random rng = new Random();
+
+        List<int> cardNumbers = new List<int> { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6 }; // a list of the possible icons that cards can have - represent image files
+
+        // initialising important variables (for matching the cards): 
+        int userTries;
+        string firstCardUp;
+        string secondCardUp;
+        int timeLeft;
+        int howManyCardSolved; // counts how many cards in total have been solved
+
+        List<PictureBox> icons = new List<PictureBox>();
+        PictureBox img_x;
+        PictureBox img_y;
+
+        // variable for tracking whether user has lost or not 
+        bool isGameOver = false;
 
         public form_mainGame()
         {
             InitializeComponent();
-            // tbl_cardLayout.Enabled = true;
+            assignCards();
         }
 
         private void assignCards()
         {
-            // Reset the icons list
-            icons = new List<string>()
-    {
-        "koh", "kod", "koc", "kos",
-        "qoh", "qod", "qoc", "qos",
-        "joh", "jod", "joc", "jos"
-    };
+            int leftPos = 20;
+            int topPos = 20;
+            int rowsSoFar = 0;
 
-            // Method for assigning icons/cards to squares in the table layout
-
-            // Count the number of PictureBox controls in the table layout 
-            int pictureBoxCount = tbl_cardLayout.Controls.OfType<PictureBox>().Count();
-
-            // Calculate the number of pairs needed
-            int pairsNeeded = pictureBoxCount / 2;
-
-            // Create a list to hold pairs of icons
-            List<string> iconPairs = new List<string>();
-
-            // Add pairs of icons to the list
-            foreach (string icon in icons)
+            for (int i = 0; i < 12; i++)
             {
-                // Add each icon once to the list
-                iconPairs.Add(icon);
-                // Add each icon again to ensure there's a pair
-                iconPairs.Add(icon);
+                PictureBox newCard = new PictureBox();
+                newCard.Height = 160;
+                newCard.Width = 100;
+                newCard.BackgroundImage = Image.FromFile("iconArt/0.png");
+                newCard.BackgroundImageLayout = ImageLayout.Stretch;
+                newCard.SizeMode = PictureBoxSizeMode.StretchImage;
+                //newCard.BackColor = Color.Maroon;
+                newCard.Click += onNewCardClicked;
+                icons.Add(newCard);
+
+                if (rowsSoFar < 3)
+                {
+                    rowsSoFar++;
+                    newCard.Left = leftPos;
+                    newCard.Top = topPos;
+                    this.Controls.Add(newCard);
+                    leftPos = leftPos + 110;
+                }
+
+                if (rowsSoFar == 3)
+                {
+                    rowsSoFar = 0;
+                    leftPos = 20;
+                    topPos += 170;
+                }
             }
 
-            // Shuffle the list of pairs
-            shuffle(iconPairs);
+        restartGame();
 
-            // Loop through each PictureBox control in the table layout 
-            foreach (Control control in tbl_cardLayout.Controls)
+        }
+
+        private void restartGame()
+        {
+            // method to call when the restart game button is clicked 
+            
+            // randomise original list 
+            var randomList = cardNumbers.OrderBy(x => Guid.NewGuid()).ToList();
+
+            cardNumbers = randomList;
+
+            for (int i = 0; i < icons.Count; i++ )
             {
-                if (control is PictureBox pictureBox)
+                icons[i].Image = null;
+                icons[i].Tag = cardNumbers[i].ToString();
+            }
+
+            userTries = 0;
+            isGameOver = false;
+            howManyCardSolved = 0;
+
+            // need code to reset timer here
+
+        }
+
+        private void onNewCardClicked(object sender, EventArgs e)
+        {
+            // first, check if the game is already over: 
+            if (isGameOver)
+            {
+                // don't register a click if the game is over
+                return;
+            }
+
+            // if no card is clipped, flip the first card
+            if (firstCardUp == null)
+            {
+                // cast sender to image box
+                img_x = sender as PictureBox;
+
+                // check if the card is not already flipped
+                if (img_x.Tag != null && img_x.Image == null)
                 {
-                    // Assign icon to PictureBox control if there are still pairs available
-                    if (iconPairs.Count > 0)
+                    // load and display the image associated with the card
+                    img_x.Image = Image.FromFile("iconArt/" + (string)img_x.Tag + ".png");
+                    firstCardUp = (string)img_x.Tag;
+                }
+            }
+
+            // if one card is flipped, flip the second one 
+            else if(secondCardUp == null)
+            {
+                img_y = sender as PictureBox;
+
+                // check if the card is not already flipped
+                if (img_y.Tag != null && img_y.Image == null)
+                {
+                    // load and display the image associated with the card
+                    img_y.Image = Image.FromFile("iconArt/" + (string)img_y.Tag + ".png");
+                    secondCardUp = (string)img_y.Tag;
+                }
+            }
+            else
+            {
+                // if both cards are flipped, compare them
+                compareCards(img_x, img_y);
+            }
+        }
+
+        private void compareCards(PictureBox A, PictureBox B)
+        {
+            if (firstCardUp == secondCardUp)
+            {
+                A.Tag = null;
+                B.Tag = null;
+                howManyCardSolved++;
+            }
+            else
+            {
+                userTries++;
+            }
+
+            firstCardUp = null;
+            secondCardUp = null;
+
+            foreach (PictureBox pics in icons.ToList())
+            {
+                if (pics.Tag != null)
+                {
+                    pics.Image = null; 
+                }
+            }
+
+            // now let's check if all the items have been solved
+
+            if (howManyCardSolved == 12)
+            {
+                endGame("Great job! You win!");
+            }
+        }
+
+        private void endGame(string msg)
+        {
+            // method to make an announcement of whether the player has won or lost the game
+
+            // write code here that will stop the timer
+
+            isGameOver = true;
+            MessageBox.Show(msg + "Click 'Restart Game' to play again.", "Congrats!");
+        }
+
+        private void timerEvent(object sender, EventArgs e)
+        {
+            /* this is to count down the timer, this code is here just to reset card icons if the player
+             * runs out of time.
+             * please change as needed, or take code out of it to make a new method etc. */
+
+            // timer tick code here 
+
+            if (lbl_timer.Text == "00:00")
+            {
+                // if the timer has run out:
+
+                endGame("Time's up, you lose.");
+                foreach (PictureBox x in icons)
+                {
+                    if (x.Tag != null)
                     {
-                        pictureBox.Image = Properties.Resources.ResourceManager.GetObject(iconPairs[0]) as Image;
-                        pictureBox.Tag = iconPairs[0]; // Store the icon's name in PictureBox.Tag
-                        iconPairs.RemoveAt(0); // Remove the assigned icon from the list of pairs
-                    }
-                    else
-                    {
-                        // If there are no more pairs in iconPairs, display an error message
-                        MessageBox.Show("Error: Not enough pairs to assign to PictureBox controls.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        x.Image = Image.FromFile("pics/" + (string)x.Tag+".png");
                     }
                 }
             }
         }
-
-
-
-        // method to shuffle a list (for the icons list) using Fisher-Yates algorithm
-        private void shuffle<T>(IList<T> list)
+        private void restartGameEvent(object sender, EventArgs e)
         {
-            int n = list.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = rng.Next(n + 1); // Corrected the range to [0, n)
-                T value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
+            restartGame();
         }
-
-
-        private void lbl_timeLeftText_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void playGame_Clicked(object sender, EventArgs e)
-        {
-            // difficultyMenuShow();
-        }
-
-        private void lbl_timer_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_restartGame_Click_1(object sender, EventArgs e)
-        {
-            assignCards();
-            lbl_timer.Text = "30:00";
-        }
-
-        /* private void difficultyMenuShow()
-        {
-            // shows the difficulty menu 
-            btn_difficultySelect_Easy.Show();
-            btn_difficultySelect_Medium.Show();
-            btn_difficultySelect_Hard.Show();
-            if (isExtremeUnlocked = true)
-            {
-                btn_difficultySelect_Extreme.Show();
-            }
-        } */
     }
 }
