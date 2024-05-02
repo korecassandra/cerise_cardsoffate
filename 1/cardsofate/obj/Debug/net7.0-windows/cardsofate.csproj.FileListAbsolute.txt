@@ -1,0 +1,35 @@
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\bin\Debug\net7.0-windows\cardsofate.exe
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\bin\Debug\net7.0-windows\cardsofate.deps.json
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\bin\Debug\net7.0-windows\cardsofate.runtimeconfig.json
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\bin\Debug\net7.0-windows\cardsofate.dll
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\bin\Debug\net7.0-windows\cardsofate.pdb
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.form_mainGame.resources
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.Properties.Resources.resources
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.csproj.GenerateResource.cache
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.AssemblyInfoInputs.cache
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.AssemblyInfo.cs
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.csproj.CoreCompileInputs.cache
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.dll
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\refint\cardsofate.dll
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.pdb
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.genruntimeconfig.cache
+C:\Users\rh830\OneDrive - Canterbury Christ Church University\Downloads\Github\1\cardsofate\obj\Debug\net7.0-windows\ref\cardsofate.dll
+C:\Users\mineg\Downloads\1\1\cardsofate\bin\Debug\net7.0-windows\cardsofate.exe
+C:\Users\mineg\Downloads\1\1\cardsofate\bin\Debug\net7.0-windows\cardsofate.deps.json
+C:\Users\mineg\Downloads\1\1\cardsofate\bin\Debug\net7.0-windows\cardsofate.runtimeconfig.json
+C:\Users\mineg\Downloads\1\1\cardsofate\bin\Debug\net7.0-windows\cardsofate.dll
+C:\Users\mineg\Downloads\1\1\cardsofate\bin\Debug\net7.0-windows\cardsofate.pdb
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.form_mainGame.resources
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.Properties.Resources.resources
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.csproj.GenerateResource.cache
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.AssemblyInfoInputs.cache
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.AssemblyInfo.cs
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.csproj.CoreCompileInputs.cache
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.sourcelink.json
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.dll
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\refint\cardsofate.dll
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.pdb
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\cardsofate.genruntimeconfig.cache
+C:\Users\mineg\Downloads\1\1\cardsofate\obj\Debug\net7.0-windows\ref\cardsofate.dll
